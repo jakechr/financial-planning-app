@@ -1,3 +1,7 @@
+# Project Proposal Link
+
+[Project Description](https://docs.google.com/document/d/1yukwGR1CTPYJK8iy0meap9maBX5fF9CGUTNoL6ph9vY/edit?usp=sharing)
+
 # Getting started
 
 This was made with npm `9.4.2` and might not work for earlier or later major versions.
