@@ -6,3 +6,18 @@
 
 # Getting Started
 Both the frontend and the backend currently have individual READMEs. Both explain the setup process.
+
+## Terraform
+Create a `.env` file in the terraform directory containing your AWS credentials like we did for the weekly assignments in class. It should look like the following. **<i>Note: If your AWS credentials are globally setup, you won't need to do this.</i>**
+```
+export AWS_ACCESS_KEY_ID=******
+export AWS_SECRET_ACCESS_KEY=********************
+```
+
+Run
+```
+cd terraform
+source .env
+terraform init
+terraform apply
+```
