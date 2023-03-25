@@ -3,9 +3,10 @@ import express, { Request, Response, NextFunction } from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import cors from 'cors';
-import Exception from './model/exception';
+import { Exception } from './model/obects';
 // import routes
 import health from './routes/health';
+import users from './routes/users';
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(logger(':method :url STATUS: :status CONTENT-LENGTH: :res[content-length
 
 // Routes that do not authenticate
 app.use('/health', health);
+app.use('/users', users);
 
 // Routes that authenticate
 //app.use('/example', Auth.authenticatedUser, example);
@@ -39,12 +41,14 @@ app.use(function (err: (HttpError | Exception), req: Request, res: Response, nex
     console.log(err);
   }
 
-  if(err instanceof Exception) { // meaning we made this error
-    res.status(err.status).send(err.serverResponse());
-  } else if (err.status === 404) {
-    res.status(404).send({message: err.message || "Not found"});
+  if (err.message && err.data) {
+    res.status(err.status || 500).send({message: err.message, data: err.data});
+  } else if (err.message) {
+    res.status(err.status || 500).send({message: err.message});
+  } else if (err.data) {
+    res.status(err.status || 500).send({data: err.data});
   } else {
-    res.status(err.status || 500).send({message: err.message || "Unexpected error"});
+    res.status(err.status || 500).send();
   }
 });
 

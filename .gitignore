@@ -1,4 +1,5 @@
 */node_modules/*
-terraform/.env
+backend/keypair/*
+*.env*
 terraform/.terraform*
 terraform/terraform.tfstate*
