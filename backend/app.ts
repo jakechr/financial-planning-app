@@ -5,8 +5,9 @@ import logger from 'morgan';
 import cors from 'cors';
 import { Exception } from './model/objects';
 // import routes
-import health from './routes/health';
+import unauthenticated from './routes/unauthenticated';
 import users from './routes/users';
+import { authenticatedUser } from './routes/utils/auth';
 
 const app = express();
 
@@ -16,18 +17,14 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(logger(':method :url STATUS: :status CONTENT-LENGTH: :res[content-length] RESP-TIME: :response-time ms', {
-  skip: (req, res) => req.baseUrl === '/health'
+  skip: (req, _) => req.baseUrl === '/'
 }));
 
-// Add authentication
-//const Auth = require('./routes/utils/auth');
-
-// Routes that do not authenticate
-app.use('/health', health);
-app.use('/users', users);
+// Base routes that do not authenticate
+app.use('/', unauthenticated); // health, register, login
 
 // Routes that authenticate
-//app.use('/example', Auth.authenticatedUser, example);
+app.use('/users', authenticatedUser, users); // delete user
 
 
 // catch 404 and forward to error handler

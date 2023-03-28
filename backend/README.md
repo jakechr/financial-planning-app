@@ -15,3 +15,6 @@ openssl rsa -in keypair/private.pem -pubout -outform PEM -out keypair/public.pem
 3. Run `npm install` to setup dependencies, then run the app with `npm run start`. **<i>Note: If you're reciving a ResourceNotFoundException that means that either terraform is not setup or the terminal running this backend is not setup with your AWS credentials. Be sure to source the .env file from the previous directory if needed</i>**
 
 The app will run on `localhost:3000`.
+
+## Authentication
+All routes require authentication (aside from `/`, `/health`, `/login`, `/register`). The authentication will be with a `JWT` which is received in the payload when registering or logging in. The `JWT` needs to be sent back for the routes which require authentication using the `Authorization` header.

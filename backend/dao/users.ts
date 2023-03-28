@@ -53,3 +53,15 @@ export async function getUser(userId: string, password: string): Promise<UserInf
     };
   }
 }
+
+export async function deleteUser(userId: string): Promise<void> {
+  const item = await ddb.deleteItem({
+    TableName: USERS_TABLE,
+    Key: {
+      userId: {S: userId}
+    }
+  });
+  if (item.$metadata.httpStatusCode !== 200) {
+    throw {status: 500, message: 'Failed to delete user'} as Exception;
+  }
+}

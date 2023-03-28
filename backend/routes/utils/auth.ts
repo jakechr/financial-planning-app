@@ -1,14 +1,11 @@
-import { Response, NextFunction } from 'express';
+import { Response, NextFunction, Request } from 'express';
 import jwt from 'jsonwebtoken';
 import { Exception, JWTRequest, UserInfo } from '../../model/objects';
 import { jwt as serverJWT } from '../../constants/constants';
 
-
-/**
- * Auth middleware for routes that require an authenticated user
- */
-export function authenticatedUser(req: JWTRequest, _: Response, next: NextFunction) {
-  verifyJWT(req);
+// Auth middleware for routes that require an authenticated user
+export function authenticatedUser(req: Request, _: Response, next: NextFunction) {
+  verifyJWT(req as JWTRequest);
   next();
 }
 
@@ -17,7 +14,7 @@ export function jwtSigner(user: UserInfo) {
     console.error('JWT Error: Could not load keypair');
     throw {status: 500, message: 'JWT Error: Could not load keypair'} as Exception;
   }
-  return jwt.sign(user, serverJWT.private_key, {algorithm: 'RS256'});
+  return jwt.sign(user, serverJWT.private_key, {algorithm: 'RS256', expiresIn: '2h'});
 }
 
 function verifyJWT(req: JWTRequest) {
