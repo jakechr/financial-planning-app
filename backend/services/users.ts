@@ -1,4 +1,4 @@
-import { createUser, doesUserExist, getUser } from "../dao/users";
+import { createUser, doesUserExist, getUser, deleteUser as dbDeleteUser } from "../dao/users";
 import { User, UserInfo, Exception } from "../model/obects";
 
 export async function register(user: User): Promise<UserInfo> {
@@ -10,4 +10,8 @@ export async function register(user: User): Promise<UserInfo> {
 
 export async function login(username: string, password: string): Promise<UserInfo> {
   return await getUser(username, password);
+}
+
+export async function deleteUser(username: string): Promise<void> {
+  return await dbDeleteUser(username);
 }
