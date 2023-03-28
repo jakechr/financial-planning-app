@@ -1,6 +1,6 @@
 import asyncHandler from "./utils/asyncHandler"
 import Express, { Response } from 'express';
-import { JWTRequest } from "../model/obects";
+import { JWTRequest } from "../model/objects";
 import { deleteUser } from "../services/users";
 const router = Express.Router();
 

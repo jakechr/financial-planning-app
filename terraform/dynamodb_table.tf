@@ -24,8 +24,8 @@ provider "aws" {
 resource "aws_dynamodb_table" "users" {
   name           = "CS501R_financial_planning_users"
   billing_mode   = "PROVISIONED"
-  read_capacity  = 2
-  write_capacity = 2
+  read_capacity  = 1
+  write_capacity = 1
   hash_key       = "userId"
 
   attribute {
@@ -45,8 +45,8 @@ resource "aws_dynamodb_table" "users" {
 resource "aws_dynamodb_table" "goals" {
   name           = "CS501R_financial_planning_goals"
   billing_mode   = "PROVISIONED"
-  read_capacity  = 4
-  write_capacity = 2
+  read_capacity  = 1
+  write_capacity = 1
   hash_key       = "goalId"
   range_key      = "userId"
 
@@ -71,8 +71,8 @@ resource "aws_dynamodb_table" "goals" {
 resource "aws_dynamodb_table" "income" {
   name           = "CS501R_financial_planning_income"
   billing_mode   = "PROVISIONED"
-  read_capacity  = 8
-  write_capacity = 2
+  read_capacity  = 1
+  write_capacity = 1
   hash_key       = "incomeId"
   range_key      = "userId"
 
@@ -97,8 +97,8 @@ resource "aws_dynamodb_table" "income" {
 resource "aws_dynamodb_table" "expenses" {
   name           = "CS501R_financial_planning_expenses"
   billing_mode   = "PROVISIONED"
-  read_capacity  = 8
-  write_capacity = 2
+  read_capacity  = 1
+  write_capacity = 1
   hash_key       = "expenseId"
   range_key      = "userId"
 

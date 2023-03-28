@@ -1,6 +1,6 @@
 import Express, { Request, Response } from 'express';
 import asyncHandler from "./utils/asyncHandler"
-import { Exception } from "../model/obects";
+import { Exception } from "../model/objects";
 import { register, login } from "../services/users";
 import { jwtSigner } from "./utils/auth";
 const router = Express.Router();

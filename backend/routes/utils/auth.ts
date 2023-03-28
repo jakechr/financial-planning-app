@@ -1,6 +1,6 @@
 import { Response, NextFunction, Request } from 'express';
 import jwt from 'jsonwebtoken';
-import { Exception, JWTRequest, UserInfo } from '../../model/obects';
+import { Exception, JWTRequest, UserInfo } from '../../model/objects';
 import { jwt as serverJWT } from '../../constants/constants';
 
 // Auth middleware for routes that require an authenticated user

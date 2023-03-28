@@ -1,6 +1,6 @@
 import ddb from '../db/dynamodb';
 import { USERS_TABLE } from "../constants/constants";
-import { Exception, User, UserInfo } from '../model/obects';
+import { Exception, User, UserInfo } from '../model/objects';
 
 export async function doesUserExist(userId: string): Promise<boolean> {
   const item = await ddb.getItem({
