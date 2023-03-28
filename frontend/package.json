@@ -52,6 +52,7 @@
     ]
   },
   "devDependencies": {
+    "cypress": "^12.9.0",
     "eslint-plugin-jest-dom": "^4.0.3",
     "webpack-cli": "^5.0.1"
   }
