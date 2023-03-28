@@ -7,6 +7,15 @@ export interface User {
   password: string;
 }
 
+// Date is of the form {MONTH}/{YEAR}, ex. 2/23
+export interface Income {
+  incomeId: string;
+  userId: string;
+  date: string;
+  amount: number;
+  description: string;
+}
+
 export interface JWT {
   public_key: Buffer;
   private_key: Buffer;

@@ -1,5 +1,5 @@
 import { createUser, doesUserExist, getUser } from "../dao/users";
-import { User, UserInfo, Exception } from "../model/obects";
+import { User, UserInfo, Exception } from "../model/objects";
 
 export async function register(user: User): Promise<UserInfo> {
   if(await doesUserExist(user.userId)) {

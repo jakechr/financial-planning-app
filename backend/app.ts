@@ -3,7 +3,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import cors from 'cors';
-import { Exception } from './model/obects';
+import { Exception } from './model/objects';
 // import routes
 import health from './routes/health';
 import users from './routes/users';
