@@ -4,6 +4,7 @@ import fs from 'fs';
 export const AWS_REGION = 'us-west-2';
 export const USERS_TABLE = 'CS501R_financial_planning_users';
 export const INCOME_TABLE = 'CS501R_financial_planning_income';
+export const GOALS_TABLE = 'CS501R_financial_planning_goals';
 
 export const jwt = loadJwt();
 
