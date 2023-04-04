@@ -9,8 +9,9 @@ export interface User {
 
 // Date is of the form {MONTH}/{YEAR}, ex. 2/23
 export interface Income {
-  incomeId: string;
+  incomeId?: string;
   userId: string;
+  name: string;
   date: string;
   amount: number;
   description: string;
