@@ -1,6 +1,9 @@
 import incomeDAO from "../dao/income"
 import { Income } from "../model/objects"
 
+const MONTH: number = 0;
+const YEAR: number = 1;
+
 async function createIncome(income: Income): Promise<string> {
     return await incomeDAO.dbCreateIncome(income);
 }
@@ -29,11 +32,11 @@ function verifyIncomeDate(date: string): boolean {
     if (dateParts.length !== 2) {
         return false;
     }
-    if (dateParts[0] > 12 || dateParts[0] < 1) {
+    if (dateParts[MONTH] > 12 || dateParts[MONTH] < 1) {
         return false;
     }
 
-    return dateParts[2] >= 0;
+    return dateParts[YEAR] >= 0;
 }
 
 const incomeService = {
