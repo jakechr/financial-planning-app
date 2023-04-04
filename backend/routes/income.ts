@@ -9,14 +9,14 @@ router.post('/', asyncHandler(async (req: JWTRequest, res: Response) => {
         throw {status: 400, message: 'Missing or invalid required fields'} as Exception;
     }
 
-    const goalId = await incomeService.createIncome({
+    const incomeId = await incomeService.createIncome({
         name: req.body.name,
         description: req.body.description,
         amount: req.body.amount,
         date: req.body.date,
         userId: req.user.userId
     });
-    res.send(goalId);
+    res.send(incomeId);
 }));
 
 router.put(':incomeId', asyncHandler(async (req: JWTRequest, res: Response) => {

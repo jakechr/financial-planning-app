@@ -8,7 +8,7 @@ async function dbCreateIncome(income: Income): Promise<string> {
     const resp = await ddb.putItem({
         TableName: INCOME_TABLE,
         Item: {
-            goalId: {S: incomeId},
+            incomeId: {S: incomeId},
             userId: {S: income.userId},
             name: {S: income.name},
             description: {S: income.description},
@@ -51,7 +51,7 @@ async function dbGetIncome(incomeId: string, userId: string): Promise<Income> {
     const resp = await ddb.getItem({
         TableName: INCOME_TABLE,
         Key: {
-            goalId: {S: incomeId},
+            incomeId: {S: incomeId},
             userId: {S: userId}
         }
     });
@@ -98,7 +98,7 @@ async function dbUpdateIncome(income: Income): Promise<void> {
     });
 
     if (resp.$metadata.httpStatusCode !== 200) {
-        throw {status: 500, message: 'Failed to update goal'} as Exception;
+        throw {status: 500, message: 'Failed to update income'} as Exception;
     }
 }
 
