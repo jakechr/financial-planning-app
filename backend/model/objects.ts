@@ -17,6 +17,16 @@ export interface Income {
   description: string;
 }
 
+// Date is of the form {MONTH}/{DAY}/{YEAR}, ex. 4/28/23
+export interface Goal {
+  goalId?: string;
+  userId: string;
+  name: string;
+  date: string;
+  amount: number;
+  description: string;
+}
+
 export interface JWT {
   public_key: Buffer;
   private_key: Buffer;
