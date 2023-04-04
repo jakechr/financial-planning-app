@@ -23,6 +23,7 @@ resource "aws_dynamodb_table_item" "sample-income" {
 {
   "incomeId": {"S": "sampleId"},
   "userId": {"S": "sample"},
+  "name": {"S": "Sample Income"},
   "date": {"S": "3/23"},
   "amount": {"N": "1000"},
   "description": {"S": "This is the salary from my job."}
