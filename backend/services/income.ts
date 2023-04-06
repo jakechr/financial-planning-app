@@ -24,28 +24,12 @@ async function getAllIncomes(userId: string): Promise<Income[]> {
     return await incomeDAO.dbGetAllIncomes(userId);
 }
 
-function verifyIncomeDate(date: string): boolean {
-    if (!date)
-        return false;
-
-    const dateParts = date.split('/').map((part) => parseInt(part));
-    if (dateParts.length !== 2) {
-        return false;
-    }
-    if (dateParts[MONTH] > 12 || dateParts[MONTH] < 1) {
-        return false;
-    }
-
-    return dateParts[YEAR] >= 0;
-}
-
 const incomeService = {
     createIncome,
     updateIncome,
     deleteIncome,
     getIncome,
-    getAllIncomes,
-    verifyIncomeDate
+    getAllIncomes
 };
 
 export default incomeService;

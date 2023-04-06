@@ -17,6 +17,16 @@ export interface Income {
   description: string;
 }
 
+// Date is of the form {MONTH}/{YEAR}, ex. 2/23
+export interface Expense {
+  expenseId?: string;
+  userId: string;
+  name: string;
+  date: string;
+  amount: number;
+  description: string;
+}
+
 // Date is of the form {MONTH}/{DAY}/{YEAR}, ex. 4/28/23
 export interface Goal {
   goalId?: string;

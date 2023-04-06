@@ -2,10 +2,11 @@ import asyncHandler from "./utils/asyncHandler"
 import Express, { Response } from 'express';
 import { Exception, JWTRequest } from "../model/objects";
 import goalService from "../services/goals";
+import dateService from "../services/date";
 const router = Express.Router();
 
 router.post('/', asyncHandler(async (req: JWTRequest, res: Response) => {
-  if(!req.body.name || !req.body.description || !req.body.amount || !verifyGoalDate(req.body.date)) {
+  if(!req.body.name || !req.body.description || !req.body.amount || !dateService.verifyMonthDayYearFormat(req.body.date)) {
     throw {status: 400, message: 'Missing or invalid required fields'} as Exception;
   }
 
@@ -30,7 +31,7 @@ router.get('/:goalId', asyncHandler(async (req: JWTRequest, res: Response) => {
 }));
 
 router.put('/:goalId', asyncHandler(async (req: JWTRequest, res: Response) => {
-  if(!req.body.name || !req.body.description || !req.body.amount || !verifyGoalDate(req.body.date)) {
+  if(!req.body.name || !req.body.description || !req.body.amount || !dateService.verifyMonthDayYearFormat(req.body.date)) {
     throw {status: 400, message: 'Missing or invalid required fields'} as Exception;
   }
 
@@ -49,22 +50,5 @@ router.delete('/:goalId', asyncHandler(async (req: JWTRequest, res: Response) =>
   await goalService.deleteGoal(req.params.goalId, req.user.userId);
   res.send();
 }));
-
-function verifyGoalDate(date: string): boolean {
-  if (!date)
-    return false;
-
-  const dateParts = date.split('/').map((part) => parseInt(part));
-  if (dateParts.length !== 3)
-    return false;
-  if (dateParts[0] > 12 || dateParts[0] < 1)
-    return false;
-  if (dateParts[1] > 31 || dateParts[1] < 1) // TODO: Bad check
-    return false;
-  if (dateParts[2] < 0)
-    return false;
-
-  return true;
-}
 
 export default router;
