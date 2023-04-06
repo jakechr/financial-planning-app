@@ -7,6 +7,9 @@ import { Exception } from './model/objects';
 // import routes
 import unauthenticated from './routes/unauthenticated';
 import users from './routes/users';
+import income from './routes/income';
+import expense from './routes/expense';
+import goals from './routes/goals';
 import { authenticatedUser } from './routes/utils/auth';
 
 const app = express();
@@ -25,6 +28,9 @@ app.use('/', unauthenticated); // health, register, login
 
 // Routes that authenticate
 app.use('/users', authenticatedUser, users); // delete user
+app.use('/income', authenticatedUser, income); // create income
+app.use('/expense', authenticatedUser, expense); // create expense
+app.use('/goals', authenticatedUser, goals); // create goal
 
 
 // catch 404 and forward to error handler
