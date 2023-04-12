@@ -18,11 +18,11 @@ const StyledTable = styled(Table)(({ theme }) => ({
  * @param {JSX.Element} tableHeader 
  * @param {JSX.Element[]} tableRows 
  */
-export default function ReusableCanvasContent({addButtonTitle, tableHeader, tableRows}) {
+export default function ReusableCanvasContent({addButtonTitle, tableHeader, tableRows, onAddButtonPress}) {
 
   return (
     <>
-      <Fab variant="extended" aria-label="Add" className="button">
+      <Fab variant="extended" aria-label="Add" className="button" onClick={onAddButtonPress}>
         <Icon sx={{ mr: 4 }}>add</Icon>
         {addButtonTitle}
       </Fab>
