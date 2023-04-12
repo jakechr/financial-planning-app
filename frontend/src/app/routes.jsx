@@ -17,6 +17,10 @@ const AppEchart = Loadable(lazy(() => import('app/views/charts/echarts/AppEchart
 
 // dashboard page
 const Analytics = Loadable(lazy(() => import('app/views/dashboard/Analytics')));
+const GoalsDashboard = Loadable(lazy(() => import('app/views/dashboard/Goals')));
+const IncomeDashboard = Loadable(lazy(() => import('app/views/dashboard/Income')));
+const ExpensesDashboard = Loadable(lazy(() => import('app/views/dashboard/Expenses')));
+const AnalysisDashboard = Loadable(lazy(() => import('app/views/dashboard/Analysis')));
 
 const routes = [
   {
@@ -28,9 +32,29 @@ const routes = [
     children: [
       ...materialRoutes,
       // dashboard route
-      {
+      { //  TODO remove
         path: '/dashboard/default',
         element: <Analytics />,
+        auth: authRoles.admin
+      },
+      {
+        path: '/dashboard/goals',
+        element: <GoalsDashboard />,
+        auth: authRoles.admin
+      },
+      {
+        path: '/dashboard/income',
+        element: <IncomeDashboard />,
+        auth: authRoles.admin
+      },
+      {
+        path: '/dashboard/expenses',
+        element: <ExpensesDashboard />,
+        auth: authRoles.admin
+      },
+      {
+        path: '/dashboard/analysis',
+        element: <AnalysisDashboard />,
         auth: authRoles.admin
       },
 

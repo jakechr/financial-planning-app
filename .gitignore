@@ -3,3 +3,4 @@ backend/keypair/*
 *.env*
 terraform/.terraform*
 terraform/terraform.tfstate*
+.idea
