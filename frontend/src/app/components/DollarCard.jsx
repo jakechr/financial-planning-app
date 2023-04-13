@@ -17,7 +17,7 @@ function DollarCard({
 				<div className="text-md">{description}</div>
 			</div>
 			{columns.map(({ colTitle, content }, index) => (
-				<div className="grow px-2">
+				<div key={colTitle} className="grow px-2">
 					<div className="font-bold text-gray-400">{colTitle}</div>
 					<div className="text-xl font-bold">{content}</div>
 				</div>
