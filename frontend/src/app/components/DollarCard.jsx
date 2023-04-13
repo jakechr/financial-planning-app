@@ -8,9 +8,10 @@ function DollarCard({
 		{ colTitle: 'Goal', content: '$2000' },
 		{ colTitle: 'By', content: 'April 12, 2023' },
 	],
+    className = ""
 }) {
 	return (
-		<div className=" w-full p-3 flex justify-between border-2 rounded-md items-center">
+		<div className={`w-full p-3 flex justify-between border-2 rounded-md items-center ${className}`}>
 			<div className="border-r-2 p-2 border-black w-2/5 mr-5">
 				<div className="text-2xl font-bold">{title}</div>
 				<div className="text-md">{description}</div>
