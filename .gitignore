@@ -4,3 +4,4 @@ backend/keypair/*
 terraform/.terraform*
 terraform/terraform.tfstate*
 .idea
+frontend/build
