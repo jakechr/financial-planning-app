@@ -132,3 +132,26 @@ export function getTimeDifference(date) {
   else if (difference < 86400 * 30 * 12) return `${Math.floor(difference / 86400 / 30)} mon`;
   else return `${(difference / 86400 / 30 / 12).toFixed(1)} y`;
 }
+
+export function isValidDate(date) {
+  const dateRegex = /^([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})$/;
+  return dateRegex.test(date);
+}
+
+export function formatDateString(dateString) {
+  // returns month, day year given a string in the format mm/dd/yyyy
+  const date = new Date(dateString);
+  const month = date.toLocaleString('default', { month: 'long' });
+  const day = date.getDate();
+  const year = date.getFullYear();
+  let suffix = 'th';
+  if (day === 1 || day === 21 || day === 31) {
+    suffix = 'st';
+  } else if (day === 2 || day === 22) {
+    suffix = 'nd';
+  } else if (day === 3 || day === 23) {
+    suffix = 'rd';
+  }
+
+  return `${month.substring(0,3)} ${day}${suffix}, ${year}`;
+}

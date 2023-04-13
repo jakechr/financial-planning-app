@@ -46,7 +46,6 @@ const Footer = () => {
             </a>
             <Span sx={{ m: 'auto' }}></Span>
             <Paragraph sx={{ m: 0 }}>
-              Design and Developed by <a href="http://ui-lib.com">UI Lib</a>
             </Paragraph>
           </FooterContent>
         </AppFooter>
