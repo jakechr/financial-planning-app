@@ -2,8 +2,6 @@ import {
 	Button,
 	Dialog,
 	TextField,
-	styled,
-	useTheme,
 } from '@mui/material';
 import { useState } from 'react';
 import DollarCard from 'app/components/DollarCard';
