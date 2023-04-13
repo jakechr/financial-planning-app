@@ -1,72 +1,111 @@
-import { Card, Grid, styled, useTheme } from '@mui/material';
-import { Fragment } from 'react';
-import Campaigns from './shared/Campaigns';
-import DoughnutChart from './shared/Doughnut';
-import RowCards from './shared/RowCards';
-import StatCards from './shared/StatCards';
-import StatCards2 from './shared/StatCards2';
-import TopSellingTable from './shared/TopSellingTable';
-import UpgradeCard from './shared/UpgradeCard';
+import {
+	Button,
+	Dialog,
+	TextField,
+} from '@mui/material';
+import { useState } from 'react';
+import DollarCard from 'app/components/DollarCard';
+import { Add } from '@mui/icons-material';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
 
-const ContentBox = styled('div')(({ theme }) => ({
-  margin: '30px',
-  [theme.breakpoints.down('sm')]: { margin: '16px' },
-}));
-
-const Title = styled('span')(() => ({
-  fontSize: '1rem',
-  fontWeight: '500',
-  marginRight: '.5rem',
-  textTransform: 'capitalize',
-}));
-
-const SubTitle = styled('span')(({ theme }) => ({
-  fontSize: '0.875rem',
-  color: theme.palette.text.secondary,
-}));
-
-const H4 = styled('h4')(({ theme }) => ({
-  fontSize: '1rem',
-  fontWeight: '500',
-  marginBottom: '16px',
-  textTransform: 'capitalize',
-  color: theme.palette.text.secondary,
-}));
+const incomeSchema = yup.object().shape({
+	title: yup.string().required('Title is required'),
+	description: yup.string(),
+	amount: yup.number().required('Amount is required'),
+});
 
 const IncomeDashboard = () => {
-  const { palette } = useTheme();
+	const [cards, setCards] = useState([
+		{
+			title: 'Main Job',
+			description: 'Salary income from my job',
+			columns: [
+				{ colTitle: 'Yearly', content: '$72,000' },
+				{ colTitle: 'Monthly', content: '$6,000' },
+			],
+		},
+		{
+			title: 'Side Hustle',
+			description: 'Saturday job doing who knows what',
+			columns: [
+				{ colTitle: 'Yearly', content: '$12,000' },
+				{ colTitle: 'Monthly', content: '$1,000' },
+			],
+		},
+	]);
+	const [addCard, setAddCard] = useState(false);
+	const formik = useFormik({
+		initialValues: {
+			title: '',
+			description: '',
+			amount: '',
+		},
+		validationSchema: incomeSchema,
+		onSubmit: values => {
+			const columns = [
+				{ colTitle: 'Yearly', content: `$${values.amount}` },
+				{ colTitle: 'Monthly', content: `$${(values.amount / 12).toFixed(2)}` },
+			];
+			setCards([
+				...cards,
+				{ title: values.title, description: values.description ?? "", columns },
+			]);
+      formik.resetForm();
+			setAddCard(false);
+		},
+	});
 
-  return (
-    <Fragment>
-      <ContentBox className="analytics">
-        <Grid container spacing={3}>
-          <Grid item lg={8} md={8} sm={12} xs={12}>
-            <StatCards />
-            <TopSellingTable />
-            <StatCards2 />
-
-            <H4>INCOME HERE</H4>
-            <RowCards />
-          </Grid>
-
-          <Grid item lg={4} md={4} sm={12} xs={12}>
-            <Card sx={{ px: 3, py: 2, mb: 3 }}>
-              <Title>Traffic Sources</Title>
-              <SubTitle>Last 30 days</SubTitle>
-
-              <DoughnutChart
-                height="300px"
-                color={[palette.primary.dark, palette.primary.main, palette.primary.light]}
-              />
-            </Card>
-
-            <UpgradeCard />
-            <Campaigns />
-          </Grid>
-        </Grid>
-      </ContentBox>
-    </Fragment>
-  );
+	return (
+		<div className="p-4">
+			<div className="text-3xl font-bold">Income</div>
+			<div>Use this page to list your sources of income.</div>
+			<Button
+				variant="contained"
+				className="bg-sky-800 mt-3"
+				onClick={() => setAddCard(true)}
+			>
+				<Add className="h-3 w-3 mr-2" /> Add an Income
+			</Button>
+			{cards.map((card, index) => (
+				<DollarCard key={card.title} className="my-3" {...card} />
+			))}
+			<Dialog open={addCard} onClose={() => setAddCard(false)}>
+				<form
+					className="flex flex-col m-5 gap-2 w-60"
+					onSubmit={formik.handleSubmit}
+				>
+					<div className="text-xl font-semibold">Add an Income</div>
+					<TextField
+						name="title"
+						label="Income Name"
+						value={formik.values.title}
+						onChange={formik.handleChange}
+            error={formik.touched.title && Boolean(formik.errors.title)}
+            helperText={formik.touched.title && formik.errors.title}
+					/>
+					<TextField
+						name="description"
+						label="Description"
+						value={formik.values.description}
+						onChange={formik.handleChange}
+					/>
+					<TextField
+						name="amount"
+						type="number"
+						label="Yearly"
+						value={formik.values.amount}
+						onChange={formik.handleChange}
+            error={formik.touched.amount && Boolean(formik.errors.amount)}
+            helperText={formik.touched.amount && formik.errors.amount}
+					/>
+					<Button type="submit" variant="contained" className="bg-sky-800 mt-3">
+						Submit
+					</Button>
+				</form>
+			</Dialog>
+		</div>
+	);
 };
 
 export default IncomeDashboard;
