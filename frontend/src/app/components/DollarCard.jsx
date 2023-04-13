@@ -2,7 +2,7 @@ import { MoreHoriz } from "@mui/icons-material";
 
 function DollarCard({
 	title = 'This is the title',
-	description = 'This is a description of what this card is about',
+	description = '',
 	columns = [
 		{ colTitle: 'Amount Saved', content: '$500' },
 		{ colTitle: 'Goal', content: '$2000' },
