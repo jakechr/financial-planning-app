@@ -22,9 +22,9 @@ export default function ReusableCanvasContent({addButtonTitle, tableHeader, tabl
 
   return (
     <>
-      <Fab variant="extended" aria-label="Add" className="button" onClick={onAddButtonPress}>
+      <Fab variant="extended" aria-label="Add" className="button" onClick={onAddButtonPress} >
         <Icon sx={{ mr: 4 }}>add</Icon>
-        {addButtonTitle}
+        <div data-cy="add-row-button">{addButtonTitle}</div>
       </Fab>
       <SimpleCard title="Simple Table">
         <Box width="100%" overflow="auto">

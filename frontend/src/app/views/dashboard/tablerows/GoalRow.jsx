@@ -18,7 +18,7 @@ export function GoalHeader() {
  */
 export default function GoalRow({goal}) {
   return (
-    <TableRow>
+    <TableRow data-cy="goal-row">
       <TableCell align="left">{goal.name}</TableCell>
       <TableCell align="center">{goal.description}</TableCell>
       <TableCell align="center">{goal.date}</TableCell>

@@ -43,7 +43,7 @@ export default function GoalsDashboard() {
   const [goalsToShow, setGoalsToShow] = useState(mockGoals)
 
   const tableRows = goalsToShow.map((goal, index) => (
-    <GoalRow key={index} goal={goal} />
+    <GoalRow key={index} goal={goal}/>
   ));
 
   const canvasContent = <ReusableCanvasContent
@@ -60,25 +60,25 @@ export default function GoalsDashboard() {
 
   const addGoalFields = [
     {
-        id: 'name',
+        name: 'name',
         type: 'text',
         label: 'Name',
         setter: setNewGoalName
     },
     {
-        id: 'description',
+        name: 'description',
         type: 'text',
         label: 'Description',
         setter: setNewGoalDescription,
     },
     {
-        id: 'date',
+        name: 'date',
         type: 'date',
         label: '',
         setter: setNewGoalDate,
     },
     {
-        id: 'amount',
+        name: 'amount',
         type: 'number',
         label: '$ Amount',
         setter: setNewGoalAmount,
@@ -134,16 +134,17 @@ const AddGoalDialog = ({isOpen, fields, handleClose, handleSubmit}) => {
                         label={field.label}
                         margin="dense"
                         onChange={(event) => field.setter(event.target.value)}
+                        data-cy={`goal-field-${field.name}`}
                     />)
                 )}
             </DialogContent>
 
             <DialogActions>
-                <Button variant="outlined" color="secondary" onClick={handleClose}>
+                <Button variant="outlined" color="secondary" onClick={handleClose} data-cy="add-goal-cancel">
                     Cancel
                 </Button>
 
-                <Button onClick={handleSubmit} color="primary">
+                <Button onClick={handleSubmit} color="primary" data-cy="add-goal-submit">
                     Add New
                 </Button>
             </DialogActions>
