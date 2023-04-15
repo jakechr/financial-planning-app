@@ -22,7 +22,7 @@ const LineChart = ({ height, color = [] }) => {
     },
     xAxis: {
       type: 'category',
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
       axisLine: { show: false },
       axisTick: { show: false },
       axisLabel: {
@@ -48,7 +48,7 @@ const LineChart = ({ height, color = [] }) => {
         name: 'This month',
         smooth: true,
         symbolSize: 4,
-        lineStyle: { width: 4 }
+        lineStyle: { width: 10 }
       },
       {
         data: [20, 50, 15, 50, 30, 70, 95],
@@ -57,7 +57,7 @@ const LineChart = ({ height, color = [] }) => {
         name: 'Last month',
         smooth: true,
         symbolSize: 4,
-        lineStyle: { width: 4 }
+        lineStyle: { width: 10 }
       }
     ]
   };

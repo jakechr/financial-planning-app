@@ -15,6 +15,24 @@ const expenseSchema = yup.object().shape({
 
 const ExpensesDashboard = () => {
   const [cards, setCards] = useState([
+    {
+      title: 'Mortgage',
+      description: 'Principal plus interest',
+      columns: [
+        {colTitle: 'Monthly', content: `$2,400`},
+        {colTitle: 'Date', content: `4/23`},
+        {colTitle: 'Repeats', content: `Every 1 month(s)`}
+      ],
+    },
+    {
+      title: 'Car payment',
+      description: 'Subaru',
+      columns: [
+        {colTitle: 'Monthly', content: `$110`},
+        {colTitle: 'Date', content: `4/23`},
+        {colTitle: 'Repeats', content: `Every 1 month(s)`}
+      ],
+    },
   ]);
 
   const [addCard, setAddCard] = useState(false);
